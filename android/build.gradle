@@ -1,0 +1,46 @@
+buildscript {
+    ext.kotlin_version = '1.8.22'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        // Version strictement alignée avec notre configuration CI/CD
+        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
+subprojects {
+    // Corrige automatiquement le crash de namespace sur les plugins obsolètes
+    pluginManager.withPlugin('com.android.application') {
+        if (project.android.namespace == null) {
+            project.android.namespace = project.group.toString() + "." + project.name
+        }
+    }
+    pluginManager.withPlugin('com.android.library') {
+        if (project.android.namespace == null) {
+            project.android.namespace = project.group.toString() + "." + project.name
+        }
+    }
+}
