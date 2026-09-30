@@ -1,6 +1,6 @@
-package com.example.tago_portail; // Remplacer par votre vrai identifiant de package
+package com.votre_nom.tago_portail // <--- GARDEZ VOTRE LIGNE PACKAGE ORIGINALE ICI
 
-import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.android.FlutterActivity
 
-public class MainActivity extends FlutterActivity {
+class MainActivity: FlutterActivity() {
 }
