@@ -1,4 +1,4 @@
 android {
-    compileSdkVersion 33  // or higher
+    compileSdkVersion 34  // or higher
     ...
 }
