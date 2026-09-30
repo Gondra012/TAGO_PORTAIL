@@ -1,4 +1,4 @@
-package com.example.tago_portail // Conservez votre identifiant package exact actuel
+package com.example.tago_portail
 
 import io.flutter.embedding.android.FlutterActivity
 
